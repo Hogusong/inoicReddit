@@ -1,12 +1,29 @@
 <ion-header>
-    <ion-navbar color="primary">
-      <ion-title>
-        IonReddit
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    This is Home
+  <ion-navbar color="primary">
+    <ion-title>
+      IonReddit
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+      <ion-item *ngFor="let item of items">
+        <ion-thumbnail *ngIf="item.data.thumbnail" item-left>
+          <img src="{{item.data.thumbnail}}">
+        </ion-thumbnail>
+        <h2 *ngIf="item.data.score > 100" style="color: red">{{item.data.title}}</h2>
+        <h2 *ngIf="item.data.score <= 100">{{item.data.title}}</h2>
+        <p>
+          <ion-icon name="thumbs-up">&nbsp;{{item.data.score}}</ion-icon>&nbsp;&nbsp;&nbsp;
+          <ion-icon name="chatboxes">&nbsp;{{item.data.num_comments}}</ion-icon>
+        </p>
+        <button ion-button clear item-right (click)="viewItem(item.data)">View</button>
+      </ion-item>
+    </ion-list>
+
+    <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>     -->
+
   </ion-content>
-  
